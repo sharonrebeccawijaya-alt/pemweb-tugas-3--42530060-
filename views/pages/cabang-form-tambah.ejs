@@ -1,0 +1,46 @@
+<%- include('../partials/header', { pageTitle: pageTitle }) %>
+
+<div class="card" style="max-width: 600px; margin: 1.5rem auto;">
+  <h2>Formulir Entri Cabang Baru</h2>
+
+  <form action="/cabang/tambah" method="POST">
+    <div style="margin-bottom: 1rem;">
+      <label for="nama_cabang">Nama Cabang:</label><br>
+      <input type="text" id="nama_cabang" name="nama_cabang" maxlength="100" required style="width: 100%; padding: 0.5rem;">
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+      <label for="alamat">Alamat:</label><br>
+      <textarea id="alamat" name="alamat" rows="3" required style="width: 100%; padding: 0.5rem;"></textarea>
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+      <label for="jumlah_karyawan">Jumlah Karyawan:</label><br>
+      <input type="number" id="jumlah_karyawan" name="jumlah_karyawan" min="0" required style="width: 100%; padding: 0.5rem;">
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+      <label for="omzet_bulanan">Omzet Bulanan (Rp):</label><br>
+      <input type="number" id="omzet_bulanan" name="omzet_bulanan" min="0" step="0.01" required style="width: 100%; padding: 0.5rem;">
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+      <label for="status">Status:</label><br>
+      <select id="status" name="status" required style="width: 100%; padding: 0.5rem;">
+        <option value="Buka">Buka</option>
+        <option value="Renovasi">Renovasi</option>
+        <option value="Tutup">Tutup</option>
+      </select>
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+      <label for="tanggal_buka">Tanggal Buka:</label><br>
+      <input type="date" id="tanggal_buka" name="tanggal_buka" required style="width: 100%; padding: 0.5rem;">
+    </div>
+
+    <button type="submit" style="padding: 0.6rem 1.2rem; background: #0284c7; color: white; border: none; border-radius: 4px; cursor: pointer;">Simpan ke Basis Data</button>
+    <a href="/cabang" style="margin-left: 1rem; color: #64748b;">Batal</a>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>

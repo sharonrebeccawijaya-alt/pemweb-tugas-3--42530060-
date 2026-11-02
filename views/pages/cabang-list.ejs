@@ -1,0 +1,49 @@
+<%- include('../partials/header', { pageTitle: pageTitle }) %>
+
+<div class="card" style="margin-top: 1.5rem;">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+    <h2>Data Cabang Franchise</h2>
+    <a href="/cabang/tambah" style="padding: 0.5rem 1rem; text-decoration: none; background: #0284c7; color: white; border-radius: 4px;">+ Tambah Cabang Baru</a>
+  </div>
+
+  <table border="1" cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse; text-align: left;">
+    <thead style="background: #f8fafc;">
+      <tr>
+        <th>ID</th>
+        <th>Nama Cabang</th>
+        <th>Alamat</th>
+        <th>Karyawan</th>
+        <th>Omzet Bulanan</th>
+        <th>Status</th>
+        <th>Tanggal Buka</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (cabangList.length === 0) { %>
+        <tr><td colspan="8" style="text-align: center;">Belum ada data cabang di basis data.</td></tr>
+      <% } else { %>
+        <% cabangList.forEach(item => { %>
+          <tr>
+            <td><%= item.id %></td>
+            <td><strong><%= item.nama_cabang %></strong></td>
+            <td><%= item.alamat %></td>
+            <td><%= item.jumlah_karyawan %> Orang</td>
+            <td>Rp <%= Number(item.omzet_bulanan).toLocaleString('id-ID') %></td>
+            <td><%= item.status %></td>
+            <td><%= item.tanggal_buka.split('-').reverse().join('-') %></td>
+            <td>
+              <a href="/cabang/edit/<%= item.id %>" style="color: #0284c7; margin-right: 0.5rem;">Edit</a>
+              <form action="/cabang/hapus/<%= item.id %>" method="POST" style="display: inline;"
+                onsubmit="return confirm('Yakin ingin menghapus cabang ini?');">
+                <button type="submit" style="color: #ef4444; background: none; border: none; cursor: pointer; text-decoration: underline;">Hapus</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('../partials/footer') %>
